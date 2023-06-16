@@ -136,32 +136,32 @@ with tab1:
             s9 = 'Game Winning Goals'
 
         with st.expander('Display filters'):
-            max_s1 = int(data['s1'].max())
+            max_s1 = int(filtered_data['s1'].max())
             s1x = st.slider(s1, 0, max_s1, 0, key='s1x_v')
 
-            max_s2 = int(data['s2'].max())
+            max_s2 = int(filtered_data['s2'].max())
             s2x = st.slider(s2, 0, max_s2, 0, key='s2x_v')
 
-            max_s3 = int(data['s3'].max())
+            max_s3 = int(filtered_data['s3'].max())
             s3x = st.slider(s3, 0, max_s3, 0, key='s3x_v')
 
-            max_s4 = int(data['s4'].max())
+            max_s4 = int(filtered_data['s4'].max())
             s4x = st.slider(s4, 0, max_s4, 0, key='s4x_v')
 
-            max_s5 = int(data['s5'].max())
+            max_s5 = int(filtered_data['s5'].max())
             s5x = st.slider(s5, 0, max_s5, 0, key='s5x_v')
 
-            max_s6 = int(data['s6'].max())
+            max_s6 = int(filtered_data['s6'].max())
             s6x = st.slider(s6, 0, max_s6, 0, key='s6x_v')
 
-            max_s7 = int(data['s7'].max())
+            max_s7 = int(filtered_data['s7'].max())
             s7x = st.slider(s7, 0, max_s7, 0, key='s7x_v')
 
-            max_s8 = int(data['s8'].max())
+            max_s8 = int(filtered_data['s8'].max())
             s8x = st.slider(s8, 0, max_s8, 0, key='s8x_v')
 
-            max_s9 = int(data['s9'].max())
-            s9x = st.slider(s9, 0, max_s9, 0, key='s9x_v')
+            max_s9 = int(filtered_data['s9'].max())
+            s9x = st.slider(s9, 0.0, max_s9, 0.1, key='s9x_v')
 
         filtered_data = filtered_data[(filtered_data['s1'] > s1x) & (filtered_data['s2'] > s2x) & 
                                       (filtered_data['s3'] > s3x) & (filtered_data['s4'] > s4x) & 
@@ -169,6 +169,15 @@ with tab1:
                                       (filtered_data['s7'] > s7x) & (filtered_data['s8'] > s8x) & 
                                       (filtered_data['s9'] > s9x)
                         ]
+        if st.checkbox('Show table', key='show_v'):
+            if position == 'Goalie':
+                filtered_data = filtered_data.rename(
+                    {'s1': 'GP', 's2': 'W', 's3': 'L', 's4': 'T', 's5': 'SHO', 's6': 'PS', 's7': 'MIN', 's8': 'GAA', 's9': 'SV%'}, axis=1)
+            else:
+                filtered_data = filtered_data.rename(
+                    {'s1': 'GP', 's2': 'G', 's3': 'A', 's4': 'PTS', 's5': 'PLMS', 's6': 'PS', 's7': 'PIM', 's8': 'SH', 's9': 'GWG'}, axis=1)
+            st.subheader('Players')
+            st.write(filtered_data)
 
         gb = 'venus_cycle'
 
@@ -255,31 +264,31 @@ with tab2:
             s9 = 'Game Winning Goals'
 
         with st.expander('Display filters'):
-            max_s1 = int(data['s1'].max())
+            max_s1 = int(filtered_data['s1'].max())
             s1x = st.slider(s1, 0, max_s1, 0, key='s1x_h')
 
-            max_s2 = int(data['s2'].max())
+            max_s2 = int(filtered_data['s2'].max())
             s2x = st.slider(s2, 0, max_s2, 0, key='s2x_h')
 
-            max_s3 = int(data['s3'].max())
+            max_s3 = int(filtered_data['s3'].max())
             s3x = st.slider(s3, 0, max_s3, 0, key='s3x_h')
 
-            max_s4 = int(data['s4'].max())
+            max_s4 = int(filtered_data['s4'].max())
             s4x = st.slider(s4, 0, max_s4, 0, key='s4x_h')
 
-            max_s5 = int(data['s5'].max())
+            max_s5 = int(filtered_data['s5'].max())
             s5x = st.slider(s5, 0, max_s5, 0, key='s5x_h')
 
-            max_s6 = int(data['s6'].max())
+            max_s6 = int(filtered_data['s6'].max())
             s6x = st.slider(s6, 0, max_s6, 0, key='s6x_h')
 
-            max_s7 = int(data['s7'].max())
+            max_s7 = int(filtered_data['s7'].max())
             s7x = st.slider(s7, 0, max_s7, 0, key='s7x_h')
 
-            max_s8 = int(data['s8'].max())
+            max_s8 = int(filtered_data['s8'].max())
             s8x = st.slider(s8, 0, max_s8, 0, key='s8x_h')
 
-            max_s9 = int(data['s9'].max())
+            max_s9 = int(filtered_data['s9'].max())
             s9x = st.slider(s9, 0, max_s9, 0, key='s9x_h')
 
         filtered_data = filtered_data[(filtered_data['s1'] > s1x) & (filtered_data['s2'] > s2x) &
@@ -290,6 +299,12 @@ with tab2:
                                       ]
 
         if st.checkbox('Show table', key='show_h'):
+            if position == 'Goalie':
+                filtered_data = filtered_data.rename(
+                    {'s1': 'GP', 's2': 'W', 's3': 'L', 's4': 'T', 's5': 'SHO', 's6': 'PS', 's7': 'MIN', 's8': 'GAA', 's9': 'SV%'}, axis=1)
+            else:
+                filtered_data = filtered_data.rename(
+                    {'s1': 'GP', 's2': 'G', 's3': 'A', 's4': 'PTS', 's5': 'PLMS', 's6': 'PS', 's7': 'PIM', 's8': 'SH', 's9': 'GWG'}, axis=1)
             st.subheader('Players')
             st.write(filtered_data)
 
