@@ -38,28 +38,31 @@ def plot_pie_chart(df, title, names, color_map):
 
 
 def classify_sign(s):
-    signs = ['ARIES', 'TAURUS', 'GEMINI', 'CANCER', 'LEO', 'VIRGO',
-             'LIBRA', 'SCORPIO', 'SAGITTARIUS', 'CAPRICORN', 'AQUARIUS', 'PISCES']
-    
-    element = modality = ''
 
-    if (signs.index(s) + 1) % 3 == 0:
-        modality = 'cardinal'
-    elif (signs.index(s) + 1) % 3 == 1:
-        modality = 'fixed'
-    else:
-        modality = 'mutable'
-
-    if (signs.index(s) + 1) % 4 == 0:
-        element = 'fire'
-    elif (signs.index(s) + 1) % 4 == 1:
-        element = 'earth'
-    elif (signs.index(s) + 1) % 4 == 2:
-        element = 'air'
-    else:
-        element = 'water'
-
-    return element, modality
+    if s == 'ARIES':
+        return 'fire', 'cardinal'
+    elif s == 'TAURUS':
+        return 'earth', 'fix'
+    elif s == 'GEMINI':
+        return 'air', 'mutable'
+    elif s == 'CANCER':
+        return 'water', 'cardinal'
+    elif s == 'LEO':
+        return 'fire', 'fix'
+    elif s == 'VIRGO':
+        return 'earth', 'mutable'
+    elif s == 'LIBRA':
+        return 'air', 'cardinal'
+    elif s == 'SCORPIO':
+        return 'water', 'fix'
+    elif s == 'SAGITTARIUS':
+        return 'fire', 'mutable'
+    elif s == 'CAPRICORN':
+        return 'earth', 'cardinal'
+    elif s == 'AQUARIUS':
+        return 'air', 'fix'
+    elif s == 'PISCES':
+        return 'water', 'mutable'
 
 
 @st.cache_data
